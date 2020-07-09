@@ -8,7 +8,26 @@
     </head>
     <body>
         <header></header>
-        <main></main>
+        <main>
+            <h1 class="page-title js-page-title"></h1>
+            <form action="" class="search-form js-search-form">
+                <label class="search-form__label" for="search-field">
+                    <input
+                        class="search-form__input js-search-form__input"
+                        name="search-field"
+                        id="search-field"
+                        value=""
+                        placeholder="Por ejemplo, Crazy Ex-Girlfriend"
+                        type="text"
+                    />
+                </label>
+                <button
+                    class="search-form__button js-search-form__button"
+                ></button>
+            </form>
+            <ul class="results-list js-results-list"></ul>
+            <ul class="fav-list js-fav-list"></ul>
+        </main>
         <footer></footer>
         <script src="./assets/js/main.js"></script>
     </body>
