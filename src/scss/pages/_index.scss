@@ -2,3 +2,20 @@
     background-color: red;
     color: white;
 }
+
+img {
+    display: inline;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+}
+
+li {
+    padding: 10px;
+}
+
+.main__results {
+    display: flex;
+}

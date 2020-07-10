@@ -32,13 +32,18 @@ function makeRequest(inputValue) {
 }
 
 // Paint API results on HTML
-const showsList = document.querySelector('.js-results-list');
+const resultsList = document.querySelector('.js-results-list');
 function paintSearchResults(searchResults) {
+    let counter = 0;
     for (const result of searchResults) {
-        // Add Li (container)
+        // Add li
         const newLi = document.createElement('li');
-        showsList.appendChild(newLi);
-        // Add Img and image results
+        resultsList.appendChild(newLi);
+        //Increment number for li id assigment
+        counter++;
+        // Assign id number to li
+        newLi.setAttribute('id', counter);
+        // Add img and image results
         addImage(result, newLi);
         // Add h2 and title results
         const newTitle = document.createElement('h2');
