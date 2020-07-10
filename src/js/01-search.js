@@ -1,13 +1,14 @@
 'use strict';
 
-let searchResults;
+let results = [];
+let favs = [];
 
-// action button selection and listener
+// search button selection and listener
 const searchButton = document.querySelector('.js-search-form__button');
 searchButton.addEventListener('click', readInput);
 
 // on button click, check and read input value
-function readInput() {
+function readInput(event) {
     event.preventDefault();
     const searchField = document.querySelector('.js-search-form__input');
     let inputValue = searchField.value;
@@ -20,30 +21,39 @@ function readInput() {
 
 // API request
 function makeRequest(inputValue) {
-    console.log(inputValue);
     fetch(`http://api.tvmaze.com/search/shows?q=${inputValue}`)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            searchResults = data;
-            paintSearchResults();
+            let searchResults = data;
+            paintSearchResults(searchResults);
         });
 }
 
 // Paint API results on HTML
-function paintSearchResults() {
-    const resultsList = document.querySelector('.js-results-list');
-    console.log(searchResults);
+const showsList = document.querySelector('.js-results-list');
+function paintSearchResults(searchResults) {
     for (const result of searchResults) {
-        //Create HTML tags
+        // Add Li (container)
         const newLi = document.createElement('li');
-        resultsList.appendChild(newLi);
-        const newImage = document.createElement('img');
-        newLi.appendChild(newImage);
+        showsList.appendChild(newLi);
+        // Add Img and image results
+        addImage(result, newLi);
+        // Add h2 and title results
         const newTitle = document.createElement('h2');
         newLi.appendChild(newTitle);
+        newTitle.innerHTML = result.show.name;
+    }
+}
 
+function addImage(result, newLi) {
+    const newImage = document.createElement('img');
+    newLi.appendChild(newImage);
+    if (!result.show.image) {
+        newImage.src =
+            'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+    } else {
         newImage.src = result.show.image.medium;
     }
 }
