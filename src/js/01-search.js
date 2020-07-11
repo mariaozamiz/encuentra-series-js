@@ -34,6 +34,9 @@ function makeRequest(inputValue) {
 // Paint results on HTML
 function paintResults() {
     const resultsList = document.querySelector('.js-results-list');
+    // Add title
+    // const sectionTitle = document.querySelector('.results-list__title');
+    // sectionTitle.removeAttribute('hidden');
     for (const result of results) {
         // Add li
         const newLi = document.createElement('li');

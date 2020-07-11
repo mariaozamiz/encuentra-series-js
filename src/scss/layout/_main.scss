@@ -28,7 +28,11 @@
     }
 
     & h2 {
+        font-family: 'Bangers', cursive;
+        text-transform: uppercase;
+        font-size: 40px;
         margin-left: 25px;
+        letter-spacing: 2px;
     }
 }
 
@@ -55,6 +59,10 @@
     }
 
     & h2 {
+        font-family: 'Bangers', cursive;
+        text-transform: uppercase;
+        font-size: 40px;
+        letter-spacing: 2px;
         margin-left: 25px;
     }
 }
@@ -64,4 +72,8 @@
     h3 {
         color: #2f3061;
     }
+}
+
+.hidden {
+    opacity: 0;
 }
