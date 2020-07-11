@@ -1,13 +1,13 @@
 'use strict';
 
-let results = [];
+let searchResults = [];
 let favs = [];
 
 // search button selection and listener
 const searchButton = document.querySelector('.js-search-form__button');
 searchButton.addEventListener('click', readInput);
 
-// on button click, check and read input value
+// on button click, check and read input value to make a Request
 function readInput(event) {
     event.preventDefault();
     const searchField = document.querySelector('.js-search-form__input');
@@ -26,23 +26,22 @@ function makeRequest(inputValue) {
             return response.json();
         })
         .then(function (data) {
-            let searchResults = data;
-            paintSearchResults(searchResults);
+            searchResults = data;
+            paintSearchResults();
         });
 }
 
 // Paint API results on HTML
 const resultsList = document.querySelector('.js-results-list');
-function paintSearchResults(searchResults) {
-    let counter = 0;
+function paintSearchResults() {
     for (const result of searchResults) {
         // Add li
         const newLi = document.createElement('li');
         resultsList.appendChild(newLi);
-        //Increment number for li id assigment
-        counter++;
+        // Assign class name to li
+        newLi.setAttribute('class', 'js-results-list__showcard');
         // Assign id number to li
-        newLi.setAttribute('id', counter);
+        newLi.setAttribute('id', result.show.id);
         // Add img and image results
         addImage(result, newLi);
         // Add h2 and title results
@@ -50,6 +49,7 @@ function paintSearchResults(searchResults) {
         newLi.appendChild(newTitle);
         newTitle.innerHTML = result.show.name;
     }
+    listenPaintedResultClicks();
 }
 
 function addImage(result, newLi) {
