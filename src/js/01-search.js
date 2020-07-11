@@ -1,13 +1,13 @@
 'use strict';
 
-let searchResults = [];
-let favs = [];
-
-// search button selection and listener
 const searchButton = document.querySelector('.js-search-form__button');
 searchButton.addEventListener('click', readInput);
 
-// on button click, check and read input value to make a Request
+// variables
+let results = [];
+let favs = [];
+
+// read and check input value
 function readInput(event) {
     event.preventDefault();
     const searchField = document.querySelector('.js-search-form__input');
@@ -15,26 +15,26 @@ function readInput(event) {
     if (inputValue) {
         makeRequest(inputValue);
     } else {
-        console.log('NO hay texto en el input');
+        showWarningMessage();
     }
 }
 
-// API request
+// make API request and save results
 function makeRequest(inputValue) {
     fetch(`http://api.tvmaze.com/search/shows?q=${inputValue}`)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
-            searchResults = data;
-            paintSearchResults();
+            results = data;
+            paintResults();
         });
 }
 
-// Paint API results on HTML
-const resultsList = document.querySelector('.js-results-list');
-function paintSearchResults() {
-    for (const result of searchResults) {
+// Paint results on HTML
+function paintResults() {
+    const resultsList = document.querySelector('.js-results-list');
+    for (const result of results) {
         // Add li
         const newLi = document.createElement('li');
         resultsList.appendChild(newLi);
@@ -49,7 +49,7 @@ function paintSearchResults() {
         newLi.appendChild(newTitle);
         newTitle.innerHTML = result.show.name;
     }
-    listenPaintedResultClicks();
+    listenClicksOnPaintedResults();
 }
 
 function addImage(result, newLi) {
@@ -61,4 +61,10 @@ function addImage(result, newLi) {
     } else {
         newImage.src = result.show.image.medium;
     }
+}
+
+// show warning message
+function showWarningMessage() {
+    const warningText = document.querySelector('.warning-text');
+    warningText.innerHTML = 'Realiza una búsqueda para comenzar';
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-function listenPaintedResultClicks() {
+function listenClicksOnPaintedResults() {
     const showCards = document.querySelectorAll('.js-results-list__showcard');
     for (const showCard of showCards) {
         showCard.addEventListener('click', saveAsFav);
@@ -8,35 +8,42 @@ function listenPaintedResultClicks() {
 }
 
 function saveAsFav(event) {
-    // Find by id
+    // Identify clicked card by id
     const clickedShowCardId = event.currentTarget.id;
-    const favShow = document.getElementById(clickedShowCardId);
-    // Highlight show at search results
-    favShow.classList.toggle('fav-show');
-    // Find fav show data in searchResults
-    const favShowMatch = searchResults.find((result) => {
-        return result.show.id === parseInt(favShow.id);
+    // Highlight card at painted search results
+    const showCard = document.getElementById(clickedShowCardId);
+    showCard.classList.toggle('fav-show');
+    // Find card's info at results array
+    const favShowCard = results.find((result) => {
+        return result.show.id === parseInt(showCard.id);
     });
-    // Push fav show into favs array
-    favs.push(favShowMatch);
-    // Call painting function
-    paintFavShowList(favShowMatch);
+    // Push card's info into favs array
+    favs.push(favShowCard);
+    // save into local storage
+    localStorage.setItem('favShows', JSON.stringify(favs));
+    paintFavShowList();
 }
 
-function paintFavShowList(element) {
+function paintFavShowList() {
+    // get favs from local storage
+    const favsInfoList = JSON.parse(localStorage.getItem('favShows'));
+    console.log(favsInfoList);
     const favsList = document.querySelector('.js-favs-list');
-    // Add li
-    const newLi = document.createElement('li');
-    favsList.appendChild(newLi);
-    // Assign class name to li
-    newLi.setAttribute('class', 'js-fav-list__showcard');
-    newLi.setAttribute('class', 'fav-show');
-    // Add img and image results
-    addFavsImage(element, newLi);
-    // Add h2 and title results
-    const newTitle = document.createElement('h3');
-    newLi.appendChild(newTitle);
-    newTitle.innerHTML = element.show.name;
+    favsList.innerHTML = '';
+    // Iterate local storage info
+    for (let i = 0; i < favsInfoList.length; i++) {
+        // Add li
+        const newLi = document.createElement('li');
+        favsList.appendChild(newLi);
+        // Assign class name to li
+        newLi.setAttribute('class', 'js-fav-list__showcard');
+        // Add img and image results
+        addFavsImage(favsInfoList[i], newLi);
+        // Add h2 and title results
+        const newTitle = document.createElement('h3');
+        newLi.appendChild(newTitle);
+        newTitle.innerHTML = favsInfoList[i].show.name;
+    }
 }
 
 function addFavsImage(element, newLi) {
