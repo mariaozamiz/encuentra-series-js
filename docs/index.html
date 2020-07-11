@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Buscador de series</title>
+        <link rel="stylesheet" href="./assets/css/main.css" />
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="page-title js-page-title">Título de la página</h1>
+            <form action="" class="search-form js-search-form">
+                <label class="search-form__label" for="search-field">
+                    <input
+                        class="search-form__input js-search-form__input"
+                        name="search-field"
+                        id="search-field"
+                        value=""
+                        placeholder="Por ejemplo, Crazy Ex-Girlfriend"
+                        type="text"
+                    />
+                </label>
+                <button
+                    type="submit"
+                    class="search-form__button js-search-form__button"
+                >
+                    Search
+                </button>
+            </form>
+            <p class="warning-text"></p>
+        </header>
+        <main class="main">
+            <div class="fav-list__container">
+                <h2 class="fav-list__title">Favoritas</h2>
+                <ul class="favs-list js-favs-list"></ul>
+            </div>
+            <div class="results-list__container">
+                <h2 class="results-list__title">Resultados</h2>
+                <ul class="results-list js-results-list"></ul>
+            </div>
+        </main>
+        <footer></footer>
+        <script src="./assets/js/main.js"></script>
+    </body>
+</html>
