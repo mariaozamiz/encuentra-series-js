@@ -45,7 +45,7 @@ function paintSearchResults() {
         // Add img and image results
         addImage(result, newLi);
         // Add h2 and title results
-        const newTitle = document.createElement('h2');
+        const newTitle = document.createElement('h3');
         newLi.appendChild(newTitle);
         newTitle.innerHTML = result.show.name;
     }

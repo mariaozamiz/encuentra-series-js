@@ -20,34 +20,32 @@ function saveAsFav(event) {
     // Push fav show into favs array
     favs.push(favShowMatch);
     // Call painting function
-    paintFavShowList();
+    paintFavShowList(favShowMatch);
 }
 
-function paintFavShowList() {
-    for (const element of favs) {
-        const favsList = document.querySelector('.js-favs-list');
-        // Add li
-        const newLi = document.createElement('li');
-        favsList.appendChild(newLi);
-        // Assign class name to li
-        newLi.setAttribute('class', 'js-fav-list__showcard');
-        newLi.setAttribute('class', 'fav-show');
-        // Add img and image results
-        addFavsImage(element, newLi);
-        // Add h2 and title results
-        const newTitle = document.createElement('h2');
-        newLi.appendChild(newTitle);
-        newTitle.innerHTML = element.show.name;
-    }
+function paintFavShowList(element) {
+    const favsList = document.querySelector('.js-favs-list');
+    // Add li
+    const newLi = document.createElement('li');
+    favsList.appendChild(newLi);
+    // Assign class name to li
+    newLi.setAttribute('class', 'js-fav-list__showcard');
+    newLi.setAttribute('class', 'fav-show');
+    // Add img and image results
+    addFavsImage(element, newLi);
+    // Add h2 and title results
+    const newTitle = document.createElement('h3');
+    newLi.appendChild(newTitle);
+    newTitle.innerHTML = element.show.name;
+}
 
-    function addFavsImage(element, newLi) {
-        const newImage = document.createElement('img');
-        newLi.appendChild(newImage);
-        if (!element.show.image) {
-            newImage.src =
-                'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-        } else {
-            newImage.src = element.show.image.medium;
-        }
+function addFavsImage(element, newLi) {
+    const newImage = document.createElement('img');
+    newLi.appendChild(newImage);
+    if (!element.show.image) {
+        newImage.src =
+            'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+    } else {
+        newImage.src = element.show.image.medium;
     }
 }

@@ -16,6 +16,30 @@ li {
     padding: 10px;
 }
 
-.main__results {
+.main {
     display: flex;
 }
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .search-form {
+        display: flex;
+        flex-direction: column;
+
+        &__input {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+// .fav-list__container {
+//     width: 20%;
+
+// }
+
+// .results-list__container {
+//     width: 70%;
+// }

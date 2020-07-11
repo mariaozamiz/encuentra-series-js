@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="./assets/css/main.css" />
     </head>
     <body>
-        <header>
+        <header class="header">
             <h1 class="page-title js-page-title">Título de la página</h1>
             <form action="" class="search-form js-search-form">
                 <label class="search-form__label" for="search-field">
@@ -28,9 +28,15 @@
                 </button>
             </form>
         </header>
-        <main class="main__results">
-            <ul class="results-list js-results-list"></ul>
-            <ul class="favs-list js-favs-list"></ul>
+        <main class="main">
+            <div class="fav-list__container">
+                <h2 class="fav-list__title">Favoritas</h2>
+                <ul class="favs-list js-favs-list"></ul>
+            </div>
+            <div class="results-list__container">
+                <h2 class="results-list__title">Resultados</h2>
+                <ul class="results-list js-results-list"></ul>
+            </div>
         </main>
         <footer></footer>
         <script src="./assets/js/main.js"></script>
