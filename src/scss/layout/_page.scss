@@ -1,3 +1,26 @@
 html {
     scroll-behavior: smooth;
+    box-sizing: border-box;
+    color: inherit;
+}
+
+.body {
+    background-color: #2f3061;
+    height: 100vh;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    color: #6ca6c1;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0px;
 }
