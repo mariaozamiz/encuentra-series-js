@@ -35,8 +35,8 @@ function makeRequest(inputValue) {
 function paintResults() {
     const resultsList = document.querySelector('.js-results-list');
     // Add title
-    // const sectionTitle = document.querySelector('.results-list__title');
-    // sectionTitle.removeAttribute('hidden');
+    const sectionTitle = document.querySelector('.results-list__title');
+    sectionTitle.classList.remove('hidden');
     for (const result of results) {
         // Add li
         const newLi = document.createElement('li');

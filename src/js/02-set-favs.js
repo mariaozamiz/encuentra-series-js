@@ -27,7 +27,10 @@ function saveAsFav(event) {
 function paintFavShowList() {
     // get favs from local storage
     const favsInfoList = JSON.parse(localStorage.getItem('favShows'));
-    console.log(favsInfoList);
+    //paint title
+    const sectionTitle = document.querySelector('.favs-list__title');
+    sectionTitle.classList.remove('hidden');
+    // clean favs list
     const favsList = document.querySelector('.js-favs-list');
     favsList.innerHTML = '';
     // Iterate local storage info
