@@ -16,9 +16,11 @@ function updateFavs(event) {
     const showToDelete = favs.find((fav) => {
         return fav.show.id === parseInt(cardShowToDelete.id);
     });
-    // Delete card from favs array
-    const indexOfshowToDelete = favs.indexOf(showToDelete);
-    favs.splice(indexOfshowToDelete, 1);
-    // Update in local storage
+    deleteFav(showToDelete);
     updateLocalStorage();
+}
+
+function deleteFav(element) {
+    const indexOfshowToDelete = favs.indexOf(element);
+    favs.splice(indexOfshowToDelete, 1);
 }
