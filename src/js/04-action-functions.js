@@ -48,8 +48,8 @@ function showWarningMessage() {
 }
 
 function deleteAllFavs() {
-    favs = [];
     removeButton.classList.add('hidden');
+    favs = [];
     updateLocalStorage();
 }
 
