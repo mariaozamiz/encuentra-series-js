@@ -34,19 +34,11 @@ function paintFavShowList() {
     favsList.innerHTML = '';
     // Iterate local storage info
     for (let i = 0; i < favsInfoList.length; i++) {
-        // Add li
-        const newLi = document.createElement('li');
-        favsList.appendChild(newLi);
-        // Assign class name to li
-        newLi.setAttribute('class', 'js-fav-list__showcard');
-        // Assign id number to li
-        newLi.setAttribute('id', favsInfoList[i].show.id);
-        // Add img and image
-        addFavsImage(favsInfoList[i], newLi);
-        // Add h2 and title
-        const newTitle = document.createElement('h3');
-        newLi.appendChild(newTitle);
-        newTitle.innerHTML = favsInfoList[i].show.name;
+        // Paint card info
+        let newLi = addLi(favsList, 'favs');
+        addShowId(favsInfoList[i], newLi);
+        addShowImage(favsInfoList[i], newLi);
+        addShowTitle(favsInfoList[i], newLi);
         // Add a delete icon
         const deleteIcon = document.createElement('i');
         deleteIcon.setAttribute('class', 'fa fa-times-circle js-delete-icon');
@@ -54,17 +46,6 @@ function paintFavShowList() {
     }
     // Listen to delete icon button
     listenToDeleteIcons();
-}
-
-function addFavsImage(element, newLi) {
-    const newImage = document.createElement('img');
-    newLi.appendChild(newImage);
-    if (!element.show.image) {
-        newImage.src =
-            'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-    } else {
-        newImage.src = element.show.image.medium;
-    }
 }
 
 function updateLocalStorage() {

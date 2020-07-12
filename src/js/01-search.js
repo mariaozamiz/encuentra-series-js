@@ -36,44 +36,54 @@ function makeRequest(inputValue) {
         });
 }
 
-// Paint results on HTML
+//Pain results in HTML
 function paintResults() {
-    const resultsList = document.querySelector('.js-results-list');
     // Add title
     const sectionTitle = document.querySelector('.results-list__title');
     sectionTitle.classList.remove('hidden');
     // Iterate results
+    const resultsList = document.querySelector('.js-results-list');
     for (const result of results) {
-        // Add li
-        const newLi = document.createElement('li');
-        resultsList.appendChild(newLi);
-        // Assign class name to li
-        newLi.setAttribute('class', 'js-results-list__showcard');
-        // Assign id number to li
-        newLi.setAttribute('id', result.show.id);
-        // Add img and image results
-        addImage(result, newLi);
-        // Add h2 and title results
-        const newTitle = document.createElement('h3');
-        newLi.appendChild(newTitle);
-        newTitle.innerHTML = result.show.name;
+        // Paint card info
+        let newLi = addLi(resultsList, 'results');
+        addShowId(result, newLi);
+        addShowImage(result, newLi);
+        addShowTitle(result, newLi);
     }
     listenClicksOnPaintedResults();
 }
 
-function addImage(result, newLi) {
+function addShowId(list, parent) {
+    parent.setAttribute('id', list.show.id);
+}
+
+function addShowImage(list, parent) {
     const newImage = document.createElement('img');
-    newLi.appendChild(newImage);
-    if (!result.show.image) {
+    parent.appendChild(newImage);
+    if (!list.show.image) {
         newImage.src =
             'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
     } else {
-        newImage.src = result.show.image.medium;
+        newImage.src = list.show.image.medium;
     }
+}
+
+function addShowTitle(list, parent) {
+    const newTitle = document.createElement('h3');
+    parent.appendChild(newTitle);
+    newTitle.innerHTML = list.show.name;
 }
 
 // show warning message
 function showWarningMessage() {
     const warningText = document.querySelector('.warning-text');
     warningText.innerHTML = 'Realiza una búsqueda para comenzar';
+}
+
+// create li and add class
+function addLi(selector, list) {
+    const newLi = document.createElement('li');
+    selector.appendChild(newLi);
+    newLi.setAttribute('class', `js-${list}-list__showcard`);
+    return newLi;
 }
