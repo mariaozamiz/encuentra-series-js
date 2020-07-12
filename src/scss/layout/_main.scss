@@ -8,7 +8,7 @@
     }
 }
 
-.fav-list__container {
+.favs-list__container {
     display: flex;
     flex-direction: column;
 
@@ -36,7 +36,7 @@
     }
 }
 
-.fav-list__container,
+.favs-list__container,
 .results-list__container {
     display: flex;
     flex-direction: column;
@@ -76,4 +76,8 @@
 
 .hidden {
     opacity: 0;
+}
+
+.fa {
+    color: #e2c938;
 }

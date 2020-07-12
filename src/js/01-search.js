@@ -1,6 +1,9 @@
 'use strict';
 
+// selectors
 const searchButton = document.querySelector('.js-search-form__button');
+
+// listeners
 searchButton.addEventListener('click', readInput);
 
 // variables
@@ -27,7 +30,9 @@ function makeRequest(inputValue) {
         })
         .then(function (data) {
             results = data;
-            paintResults();
+            results.length === 0
+                ? console.log('no hay serie, no')
+                : paintResults();
         });
 }
 
@@ -37,6 +42,7 @@ function paintResults() {
     // Add title
     const sectionTitle = document.querySelector('.results-list__title');
     sectionTitle.classList.remove('hidden');
+    // Iterate results
     for (const result of results) {
         // Add li
         const newLi = document.createElement('li');
