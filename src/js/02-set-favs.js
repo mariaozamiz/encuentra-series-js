@@ -20,8 +20,7 @@ function saveAsFav(event) {
     // Push card's info into favs array
     favs.push(favShowCard);
     // save into local storage
-    localStorage.setItem('favShows', JSON.stringify(favs));
-    paintFavShowList();
+    updateLocalStorage();
 }
 
 function paintFavShowList() {
@@ -40,13 +39,21 @@ function paintFavShowList() {
         favsList.appendChild(newLi);
         // Assign class name to li
         newLi.setAttribute('class', 'js-fav-list__showcard');
-        // Add img and image results
+        // Assign id number to li
+        newLi.setAttribute('id', favsInfoList[i].show.id);
+        // Add img and image
         addFavsImage(favsInfoList[i], newLi);
-        // Add h2 and title results
+        // Add h2 and title
         const newTitle = document.createElement('h3');
         newLi.appendChild(newTitle);
         newTitle.innerHTML = favsInfoList[i].show.name;
+        // Add a delete icon
+        const deleteIcon = document.createElement('i');
+        deleteIcon.setAttribute('class', 'fa fa-times-circle js-delete-icon');
+        newLi.appendChild(deleteIcon);
     }
+    // Listen to delete icon button
+    listenToDeleteIcons();
 }
 
 function addFavsImage(element, newLi) {
@@ -58,4 +65,9 @@ function addFavsImage(element, newLi) {
     } else {
         newImage.src = element.show.image.medium;
     }
+}
+
+function updateLocalStorage() {
+    localStorage.setItem('favShows', JSON.stringify(favs));
+    paintFavShowList();
 }
