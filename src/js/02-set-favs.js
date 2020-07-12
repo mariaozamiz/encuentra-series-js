@@ -25,13 +25,10 @@ function saveAsFav(event) {
 
 function paintFavShowList() {
     // add title
-    const sectionTitle = document.querySelector('.fav-list__title');
+    const sectionTitle = document.querySelector('.favs-list__title');
     sectionTitle.classList.remove('hidden');
     // get favs from local storage
     const favsInfoList = JSON.parse(localStorage.getItem('favShows'));
-    //paint title
-    const sectionTitle = document.querySelector('.favs-list__title');
-    sectionTitle.classList.remove('hidden');
     // clean favs list
     const favsList = document.querySelector('.js-favs-list');
     favsList.innerHTML = '';
