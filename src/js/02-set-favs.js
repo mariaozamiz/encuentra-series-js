@@ -47,7 +47,7 @@ function paintFavShowList() {
     //paint title
     addSectionTitle('favs');
     //paint remove button
-    addRemoveAllFavsButton();
+    addRemoveAllButton();
     // clean favs list
     const favsList = document.querySelector('.js-favs-list');
     favsList.innerHTML = '';
@@ -63,8 +63,9 @@ function paintFavShowList() {
         deleteIcon.setAttribute('class', 'fa fa-times-circle js-delete-icon');
         newLi.appendChild(deleteIcon);
     }
-    // Listen to delete icon button
+    // Listen to delete buttons
     listenToDeleteIcons();
+    listenToDeleteAllButton();
 }
 
 function updateLocalStorage() {

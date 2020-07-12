@@ -37,7 +37,7 @@ function addShowTitle(list, parent) {
     newTitle.innerHTML = list.show.name;
 }
 
-function addRemoveAllFavsButton() {
+function addRemoveAllButton() {
     const removeButton = document.querySelector('.js-favs-list__remove-button');
     removeButton.classList.remove('hidden');
 }
@@ -47,9 +47,19 @@ function showWarningMessage() {
     warningText.innerHTML = 'Realiza una búsqueda para comenzar';
 }
 
+function deleteAllFavs() {
+    favs = [];
+    removeButton.classList.add('hidden');
+    updateLocalStorage();
+}
+
 // DELETING ____________________________________________________________
 
 function deleteFav(element) {
     const indexOfshowToDelete = favs.indexOf(element);
     favs.splice(indexOfshowToDelete, 1);
+}
+
+function listenToDeleteAllButton() {
+    removeButton.addEventListener('click', deleteAllFavs);
 }

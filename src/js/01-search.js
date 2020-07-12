@@ -2,6 +2,7 @@
 
 // selectors
 const searchButton = document.querySelector('.js-search-form__button');
+const removeButton = document.querySelector('.js-favs-list__remove-button');
 
 // listeners
 searchButton.addEventListener('click', readInput);
