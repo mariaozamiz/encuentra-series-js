@@ -13,16 +13,18 @@ function updateFavs(event) {
     let cardShowToDelete = document.getElementById(
         event.currentTarget.parentElement.id
     );
-    // Find clicked fav card's info at favs array
+    // Find clicked show to delete at results array
     const showToDelete = favs.find((fav) => {
         return fav.show.id === parseInt(cardShowToDelete.id);
     });
-    // Find clicked fav card's info at results array in order to unhightlight
-    // const showToDelete = results.find((result) => {
-    //     return result.show.id === parseInt(cardShowToDelete.id);
-    // });
-    // if (showToDelete) {
-    //     showCard.classList.remove('fav-show');
     deleteFav(showToDelete);
     updateLocalStorage();
 }
+
+// function retireEmphasis() {
+//     const showToDelete = results.find((result) => {
+//         return result.show.id === parseInt(cardShowToDelete.id);
+// // algo
+//  showToDelete.classList.remove('fav-show');
+// }
+// };

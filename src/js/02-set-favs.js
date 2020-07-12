@@ -28,7 +28,7 @@ function checkIsFav(event) {
 function saveAsFav(event) {
     // Identify clicked card by id
     const clickedShowCardId = event.currentTarget.id;
-    // Highlight card at painted search results
+    // Emphasize card
     const showCard = document.getElementById(clickedShowCardId);
     showCard.classList.toggle('fav-show');
     // Find card's info at results array
@@ -60,7 +60,10 @@ function paintFavShowList() {
         addShowTitle(favsInfoList[i], newLi);
         // Add a delete icon
         const deleteIcon = document.createElement('i');
-        deleteIcon.setAttribute('class', 'fa fa-times-circle js-delete-icon');
+        deleteIcon.setAttribute(
+            'class',
+            'fa fa-times-circle fa-2x js-delete-icon'
+        );
         newLi.appendChild(deleteIcon);
     }
     // Listen to delete buttons
