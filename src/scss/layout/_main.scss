@@ -6,6 +6,18 @@
     @include desktop {
         flex-direction: row;
     }
+
+    .favs-list__container {
+        @include desktop {
+            width: 20%;
+        }
+    }
+
+    .favs-list__container {
+        @include desktop {
+            width: 60%;
+        }
+    }
 }
 
 .favs-list__container {
@@ -31,7 +43,6 @@
         font-family: 'Bangers', cursive;
         text-transform: uppercase;
         font-size: 40px;
-        margin-left: 25px;
         letter-spacing: 2px;
     }
 }
@@ -40,6 +51,8 @@
 .results-list__container {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
 
     & ul {
         display: flex;
@@ -63,7 +76,19 @@
         text-transform: uppercase;
         font-size: 40px;
         letter-spacing: 2px;
-        margin-left: 25px;
+    }
+}
+
+.favs-list__remove-button {
+    border: 1px solid #e2c938;
+    color: #e2c938;
+    background-color: #2f3061;
+    width: 150px;
+    border-radius: 6px;
+    padding: 8px 0;
+
+    & span {
+        color: #e2c938;
     }
 }
 

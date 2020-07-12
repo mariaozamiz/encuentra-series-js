@@ -1,9 +1,27 @@
 'use strict';
 
+// painted cards selector and listener
 function listenClicksOnPaintedResults() {
     const showCards = document.querySelectorAll('.js-results-list__showcard');
     for (const showCard of showCards) {
-        showCard.addEventListener('click', saveAsFav);
+        showCard.addEventListener('click', checkIsFav);
+    }
+}
+
+function checkIsFav(event) {
+    // Identify clicked card by id
+    let showCard = document.getElementById(event.currentTarget.id);
+    // Check if card is already at favs array
+    const favShowCard = favs.find((fav) => {
+        return fav.show.id === parseInt(showCard.id);
+    });
+    // Find card's info at results array
+    if (favShowCard) {
+        deleteFav(favShowCard);
+        showCard.classList.toggle('fav-show');
+        updateLocalStorage();
+    } else {
+        saveAsFav(event, favShowCard);
     }
 }
 
@@ -27,8 +45,9 @@ function paintFavShowList() {
     // get favs from local storage
     const favsInfoList = JSON.parse(localStorage.getItem('favShows'));
     //paint title
-    const sectionTitle = document.querySelector('.favs-list__title');
-    sectionTitle.classList.remove('hidden');
+    addSectionTitle('favs');
+    //paint remove button
+    addRemoveAllFavsButton();
     // clean favs list
     const favsList = document.querySelector('.js-favs-list');
     favsList.innerHTML = '';

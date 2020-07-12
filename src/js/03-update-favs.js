@@ -10,17 +10,19 @@ function listenToDeleteIcons() {
 
 function updateFavs(event) {
     // Identify clicked show to delete by id
-    const cardShowToDeleteId = event.currentTarget.parentElement.id;
-    const cardShowToDelete = document.getElementById(cardShowToDeleteId);
-    // Find clicked card's info at favs array
+    let cardShowToDelete = document.getElementById(
+        event.currentTarget.parentElement.id
+    );
+    // Find clicked fav card's info at favs array
     const showToDelete = favs.find((fav) => {
         return fav.show.id === parseInt(cardShowToDelete.id);
     });
+    // Find clicked fav card's info at results array in order to unhightlight
+    // const showToDelete = results.find((result) => {
+    //     return result.show.id === parseInt(cardShowToDelete.id);
+    // });
+    // if (showToDelete) {
+    //     showCard.classList.remove('fav-show');
     deleteFav(showToDelete);
     updateLocalStorage();
-}
-
-function deleteFav(element) {
-    const indexOfshowToDelete = favs.indexOf(element);
-    favs.splice(indexOfshowToDelete, 1);
 }
