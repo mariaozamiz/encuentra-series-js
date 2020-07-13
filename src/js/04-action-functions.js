@@ -42,11 +42,6 @@ function addRemoveAllButton() {
     removeButton.classList.remove('hidden');
 }
 
-function showWarningMessage() {
-    const warningText = document.querySelector('.warning-text');
-    warningText.innerHTML = 'Realiza una búsqueda para comenzar';
-}
-
 function deleteAllFavs() {
     removeButton.classList.add('hidden');
     favs = [];

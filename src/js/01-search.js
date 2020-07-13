@@ -3,6 +3,7 @@
 // selectors
 const searchButton = document.querySelector('.js-search-form__button');
 const removeButton = document.querySelector('.js-favs-list__remove-button');
+const resultsList = document.querySelector('.js-results-list');
 
 // listeners
 searchButton.addEventListener('click', readInput);
@@ -16,11 +17,7 @@ function readInput(event) {
     event.preventDefault();
     const searchField = document.querySelector('.js-search-form__input');
     let inputValue = searchField.value;
-    if (inputValue) {
-        makeRequest(inputValue);
-    } else {
-        showWarningMessage();
-    }
+    makeRequest(inputValue);
 }
 
 // make API request and save results
@@ -30,17 +27,17 @@ function makeRequest(inputValue) {
             return response.json();
         })
         .then(function (data) {
+            // Save data
             results = data;
-            results.length === 0
-                ? console.log('no hay serie, no')
-                : paintResults();
+            paintResults();
         });
 }
 
 //Pain results in HTML
 function paintResults() {
-    const resultsList = document.querySelector('.js-results-list');
-    // Add title
+    // Clear results page
+    resultsList.innerHTML = '';
+    // Add section title
     addSectionTitle('results');
     for (const result of results) {
         // Paint card info
