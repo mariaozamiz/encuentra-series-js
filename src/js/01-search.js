@@ -35,13 +35,11 @@ function paintResults() {
     const resultsList = document.querySelector('.js-results-list');
     // Clear results page first
     resultsList.innerHTML = '';
-    // Add section title
     addSectionTitle('results');
     // Paint card info
     for (const result of results) {
-        //add li
         let newLi = createCard(resultsList, result);
-        checkIfNeedsYellow(newLi);
+        checkIfNeedsHighlight(newLi);
         newLi.addEventListener('click', checkIsFav);
     }
 }
@@ -53,17 +51,6 @@ function addSectionTitle(stringlistname) {
         `.${stringlistname}-list__title`
     );
     sectionTitle.classList.remove('hidden');
-}
-
-function checkIfNeedsYellow(newLi) {
-    // check if what is painted on results is already at favs
-    const alreadyAFav = favs.find((fav) => {
-        return fav.show.id === parseInt(newLi.id);
-    });
-    // and change background
-    if (alreadyAFav) {
-        newLi.classList.add('yellow-background');
-    }
 }
 
 function createCard(parent, element) {
@@ -86,4 +73,15 @@ function createCard(parent, element) {
     newLi.appendChild(newTitle);
     newTitle.innerHTML = element.show.name;
     return newLi;
+}
+
+function checkIfNeedsHighlight(newLi) {
+    // check if what is painted on results is already at favs
+    const alreadyAFav = favs.find((fav) => {
+        return fav.show.id === parseInt(newLi.id);
+    });
+    // highlight
+    if (alreadyAFav) {
+        newLi.classList.add('yellow-background');
+    }
 }
