@@ -2,59 +2,48 @@
 
 // PAINTING ____________________________________________________________
 
-function addSectionTitle(stringlistname) {
-    const sectionTitle = document.querySelector(
-        `.${stringlistname}-list__title`
-    );
-    sectionTitle.classList.remove('hidden');
+function addDeleteAllButton() {
+    const deleteButton = document.querySelector('.js-favs-list__delete-button');
+    deleteButton.classList.remove('hidden');
 }
 
-function addLi(selector, list) {
-    const newLi = document.createElement('li');
-    selector.appendChild(newLi);
-    newLi.setAttribute('class', `js-${list}-list__showcard`);
-    return newLi;
-}
-
-function addShowId(list, parent) {
-    parent.setAttribute('id', list.show.id);
-}
-
-function addShowImage(list, parent) {
-    const newImage = document.createElement('img');
-    parent.appendChild(newImage);
-    if (!list.show.image) {
-        newImage.src =
-            'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-    } else {
-        newImage.src = list.show.image.medium;
-    }
-}
-
-function addShowTitle(list, parent) {
-    const newTitle = document.createElement('h3');
-    parent.appendChild(newTitle);
-    newTitle.innerHTML = list.show.name;
-}
-
-function addRemoveAllButton() {
-    const removeButton = document.querySelector('.js-favs-list__remove-button');
-    removeButton.classList.remove('hidden');
-}
-
-function deleteAllFavs() {
-    removeButton.classList.add('hidden');
-    favs = [];
-    updateLocalStorage();
+function addDeleteIcon(parent) {
+    const deleteIcon = document.createElement('i');
+    deleteIcon.setAttribute('class', 'fa fa-times-circle fa-2x js-delete-icon');
+    parent.appendChild(deleteIcon);
 }
 
 // DELETING ____________________________________________________________
 
-function deleteFav(element) {
-    const indexOfshowToDelete = favs.indexOf(element);
-    favs.splice(indexOfshowToDelete, 1);
+// Delete icons ____________________________________
+
+// Delete all button ________________________________
+
+function deleteAllFavs(event) {
+    event.preventDefault();
+    favs = [];
+    updateLocalStorage();
+    paintFavs();
+    paintResults();
+}
+
+// LISTENING _______________________________________________________________
+
+function listenToSearchButton() {
+    const searchButton = document.querySelector('.js-search-form__button');
+    searchButton.addEventListener('click', readInput);
+}
+
+function listenToDeleteIcons() {
+    const deleteIcons = document.querySelectorAll('.js-delete-icon');
+    for (const deleteIcon of deleteIcons) {
+        deleteIcon.addEventListener('click', deleteFavs);
+    }
 }
 
 function listenToDeleteAllButton() {
-    removeButton.addEventListener('click', deleteAllFavs);
+    const deleteAllButton = document.querySelector(
+        '.js-favs-list__delete-button'
+    );
+    deleteAllButton.addEventListener('click', deleteAllFavs);
 }

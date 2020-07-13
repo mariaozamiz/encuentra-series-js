@@ -18,53 +18,45 @@ function checkIsFav(event) {
     // Find card's info at results array
     if (favShowCard) {
         deleteFav(favShowCard);
-        showCard.classList.toggle('fav-show');
-        updateLocalStorage();
     } else {
         saveAsFav(event, favShowCard);
     }
+    updateLocalStorage();
+    paintFavs();
+    paintResults();
 }
 
 function saveAsFav(event) {
-    // Identify clicked card by id
     const clickedShowCardId = event.currentTarget.id;
-    // Emphasize card
-    const showCard = document.getElementById(clickedShowCardId);
-    showCard.classList.toggle('fav-show');
-    // Find card's info at results array
     const favShowCard = results.find((result) => {
-        return result.show.id === parseInt(showCard.id);
+        return result.show.id === parseInt(clickedShowCardId);
     });
     // Push card's info into favs array
     favs.push(favShowCard);
     // save into local storage
     updateLocalStorage();
+    paintFavs();
+    paintResults();
 }
 
-function paintFavShowList() {
+function paintFavs() {
     // get favs from local storage
     const favsInfoList = JSON.parse(localStorage.getItem('favShows'));
+    favs = favsInfoList;
     //paint title
     addSectionTitle('favs');
     //paint remove button
-    addRemoveAllButton();
+    addDeleteAllButton();
     // clean favs list
     const favsList = document.querySelector('.js-favs-list');
     favsList.innerHTML = '';
-    // Iterate local storage info
+    // Paint card info from local storage
     for (let i = 0; i < favsInfoList.length; i++) {
-        // Paint card info
         let newLi = addLi(favsList, 'favs');
-        addShowId(favsInfoList[i], newLi);
+        newLi.setAttribute('id', favsInfoList[i].show.id);
         addShowImage(favsInfoList[i], newLi);
         addShowTitle(favsInfoList[i], newLi);
-        // Add a delete icon
-        const deleteIcon = document.createElement('i');
-        deleteIcon.setAttribute(
-            'class',
-            'fa fa-times-circle fa-2x js-delete-icon'
-        );
-        newLi.appendChild(deleteIcon);
+        addDeleteIcon(newLi);
     }
     // Listen to delete buttons
     listenToDeleteIcons();
@@ -73,5 +65,4 @@ function paintFavShowList() {
 
 function updateLocalStorage() {
     localStorage.setItem('favShows', JSON.stringify(favs));
-    paintFavShowList();
 }
