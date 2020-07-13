@@ -3,25 +3,22 @@
 function checkIsFav(event) {
     // Identify clicked card by id
     let clickedElement = document.getElementById(event.currentTarget.id);
+    const id = parseInt(clickedElement.id);
     // Check if card is already at favs array
     const favShowCard = favs.find((fav) => {
-        return fav.show.id === parseInt(clickedElement.id);
+        return fav.show.id === id;
     });
-    // Find card's info at results array
     if (favShowCard) {
-        deleteFavs(favShowCard);
+        deleteFav(id);
     } else {
-        saveAsFav(event, favShowCard);
+        saveAsFav(id);
     }
-    updateLocalStorage();
-    paintFavs();
-    paintResults();
 }
 
-function saveAsFav(event) {
-    const clickedShowCardId = event.currentTarget.id;
+function saveAsFav(id) {
+    // Get info card from results array
     const favShowCard = results.find((result) => {
-        return result.show.id === parseInt(clickedShowCardId);
+        return result.show.id === parseInt(id);
     });
     // Push card's info into favs array
     favs.push(favShowCard);
@@ -34,10 +31,11 @@ function saveAsFav(event) {
 function paintFavs() {
     // get favs from local storage
     const favsInfoList = JSON.parse(localStorage.getItem('favShows'));
+    if (!favsInfoList) return;
     favs = favsInfoList;
     //paint title
     addSectionTitle('favs');
-    //paint remove button
+    //paint delete-all button
     addDeleteAllButton();
     // clean favs list
     const favsList = document.querySelector('.js-favs-list');
@@ -48,10 +46,19 @@ function paintFavs() {
         addDeleteIcon(newLi);
     }
     // Listen to delete buttons
-    listenToDeleteIcons();
     listenToDeleteAllButton();
 }
 
 function updateLocalStorage() {
     localStorage.setItem('favShows', JSON.stringify(favs));
+}
+
+// PAINTING______________________________________
+
+function addDeleteIcon(parent) {
+    const deleteIcon = document.createElement('i');
+    deleteIcon.setAttribute('class', 'fa fa-times-circle fa-2x js-delete-icon');
+    parent.appendChild(deleteIcon);
+    // delete button listener
+    deleteIcon.addEventListener('click', getClickedItemId);
 }
