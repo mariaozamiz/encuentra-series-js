@@ -4,8 +4,11 @@
 let results = [];
 let favs = [];
 
-listenToSearchButton();
 paintFavs();
+
+// search button listener
+const searchButton = document.querySelector('.js-search-form__button');
+searchButton.addEventListener('click', readInput);
 
 // read input value
 function readInput(event) {
@@ -36,15 +39,14 @@ function paintResults() {
     addSectionTitle('results');
     // Paint card info
     for (const result of results) {
-        let newLi = addLi(resultsList, 'results');
-        newLi.setAttribute('id', result.show.id);
-        addShowImage(result, newLi);
-        addShowTitle(result, newLi);
-        checkIsFavAlready(newLi);
+        //add li
+        let newLi = createCard(resultsList, result);
+        checkIfNeedsYellow(newLi);
+        newLi.addEventListener('click', checkIsFav);
     }
-
-    listenClicksOnPaintedResults();
 }
+
+// PAINTING __________________________________________
 
 function addSectionTitle(stringlistname) {
     const sectionTitle = document.querySelector(
@@ -53,37 +55,35 @@ function addSectionTitle(stringlistname) {
     sectionTitle.classList.remove('hidden');
 }
 
-function addLi(selector, list) {
-    const newLi = document.createElement('li');
-    selector.appendChild(newLi);
-    newLi.setAttribute('class', `js-${list}-list__showcard`);
-    return newLi;
+function checkIfNeedsYellow(newLi) {
+    // check if what is painted on results is already at favs
+    const alreadyAFav = favs.find((fav) => {
+        return fav.show.id === parseInt(newLi.id);
+    });
+    // and change background
+    if (alreadyAFav) {
+        newLi.classList.add('yellow-background');
+    }
 }
 
-function addShowImage(list, parent) {
+function createCard(parent, element) {
+    // li
+    const newLi = document.createElement('li');
+    parent.appendChild(newLi);
+    // li atribute
+    newLi.setAttribute('id', element.show.id);
+    // image
     const newImage = document.createElement('img');
-    parent.appendChild(newImage);
-    if (!list.show.image) {
+    newLi.appendChild(newImage);
+    if (!element.show.image) {
         newImage.src =
             'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
     } else {
-        newImage.src = list.show.image.medium;
+        newImage.src = element.show.image.medium;
     }
-}
-
-function addShowTitle(list, parent) {
+    // title
     const newTitle = document.createElement('h3');
-    parent.appendChild(newTitle);
-    newTitle.innerHTML = list.show.name;
-}
-
-function checkIsFavAlready(newLi) {
-    // comprobar id de ficha con array favs
-    const alreadyFavShow = favs.find((fav) => {
-        return fav.show.id === parseInt(newLi.id);
-    });
-    // si coincide -> aplicar color
-    if (alreadyFavShow) {
-        newLi.classList.add('fav-show');
-    }
+    newLi.appendChild(newTitle);
+    newTitle.innerHTML = element.show.name;
+    return newLi;
 }

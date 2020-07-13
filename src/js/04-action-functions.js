@@ -29,11 +29,6 @@ function deleteAllFavs(event) {
 
 // LISTENING _______________________________________________________________
 
-function listenToSearchButton() {
-    const searchButton = document.querySelector('.js-search-form__button');
-    searchButton.addEventListener('click', readInput);
-}
-
 function listenToDeleteIcons() {
     const deleteIcons = document.querySelectorAll('.js-delete-icon');
     for (const deleteIcon of deleteIcons) {

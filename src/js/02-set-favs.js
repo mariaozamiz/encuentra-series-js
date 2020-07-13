@@ -1,23 +1,15 @@
 'use strict';
 
-// painted cards selector and listener
-function listenClicksOnPaintedResults() {
-    const showCards = document.querySelectorAll('.js-results-list__showcard');
-    for (const showCard of showCards) {
-        showCard.addEventListener('click', checkIsFav);
-    }
-}
-
 function checkIsFav(event) {
     // Identify clicked card by id
-    let showCard = document.getElementById(event.currentTarget.id);
+    let clickedElement = document.getElementById(event.currentTarget.id);
     // Check if card is already at favs array
     const favShowCard = favs.find((fav) => {
-        return fav.show.id === parseInt(showCard.id);
+        return fav.show.id === parseInt(clickedElement.id);
     });
     // Find card's info at results array
     if (favShowCard) {
-        deleteFav(favShowCard);
+        deleteFavs(favShowCard);
     } else {
         saveAsFav(event, favShowCard);
     }
@@ -52,10 +44,7 @@ function paintFavs() {
     favsList.innerHTML = '';
     // Paint card info from local storage
     for (let i = 0; i < favsInfoList.length; i++) {
-        let newLi = addLi(favsList, 'favs');
-        newLi.setAttribute('id', favsInfoList[i].show.id);
-        addShowImage(favsInfoList[i], newLi);
-        addShowTitle(favsInfoList[i], newLi);
+        let newLi = createCard(favsList, favsInfoList[i]);
         addDeleteIcon(newLi);
     }
     // Listen to delete buttons
