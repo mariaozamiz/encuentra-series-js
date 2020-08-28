@@ -12,7 +12,8 @@
     letter-spacing: 2px;
     margin: 40px auto;
     @include tablet {
-        font-size: 60px;
+        font-size: 100px;
+        margin: 80px auto;
     }
 }
 
