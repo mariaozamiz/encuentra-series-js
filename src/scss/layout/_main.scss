@@ -20,33 +20,6 @@
     }
 }
 
-.favs-list__container {
-    display: flex;
-    flex-direction: column;
-
-    & ul {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: flex-start;
-        overflow-y: auto;
-        overflow-x: hidden;
-        margin-top: 0px;
-    }
-
-    & li {
-        margin: 15px;
-    }
-
-    & h2 {
-        font-family: 'Bangers', cursive;
-        text-transform: uppercase;
-        font-size: 40px;
-        letter-spacing: 2px;
-    }
-}
-
 .favs-list__container,
 .results-list__container {
     display: flex;
@@ -72,7 +45,7 @@
     }
 
     & h2 {
-        font-family: 'Bangers', cursive;
+        font-family: $font-emphatic;
         text-transform: uppercase;
         font-size: 40px;
         letter-spacing: 2px;
@@ -80,23 +53,23 @@
 }
 
 .favs-list__delete-button {
-    border: 1px solid #e2c938;
-    color: #e2c938;
-    background-color: #2f3061;
+    border: 1px solid $color-tertiary;
+    color: $color-tertiary;
+    background-color: $color-primary;
     width: 150px;
     border-radius: 6px;
     padding: 8px 0;
     cursor: pointer;
 
     & span {
-        color: #e2c938;
+        color: $color-tertiary;
     }
 }
 
 .yellow-background {
-    background-color: #e2c938;
+    background-color: $color-tertiary;
     h3 {
-        color: #2f3061;
+        color: $color-primary;
     }
 }
 
@@ -105,5 +78,5 @@
 }
 
 .fa {
-    color: #e2c938;
+    color: $color-tertiary;
 }

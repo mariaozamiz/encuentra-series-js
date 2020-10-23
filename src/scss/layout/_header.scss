@@ -6,7 +6,7 @@
 }
 
 .page-title {
-    font-family: 'Bangers', cursive;
+    font-family: $font-emphatic;
     text-transform: uppercase;
     font-size: 50px;
     letter-spacing: 2px;
@@ -24,18 +24,18 @@
 
     &__input {
         margin-bottom: 20px;
-        background-color: white;
+        background-color: $color-light;
         border: none;
         border-radius: 1px;
         text-align: center;
         padding: 9px 5px;
-        color: #2f3061;
+        color: $color-primary;
         width: 250px;
     }
     &__button {
         font-weight: 800;
-        background-color: #6ca6c1;
-        color: #2f3061;
+        background-color: $color-secondary;
+        color: $color-primary;
         border-radius: 6px;
         padding: 5px 0;
         width: 100px;
@@ -43,7 +43,7 @@
         cursor: pointer;
     }
     ::placeholder {
-        color: #6ca6c1;
+        color: $color-secondary;
         opacity: 0.6;
     }
 }

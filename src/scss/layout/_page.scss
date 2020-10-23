@@ -5,13 +5,13 @@ html {
 }
 
 .body {
-    background-color: #2f3061;
+    background-color: $color-primary;
     height: 100vh;
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
-    color: #6ca6c1;
+    font-family: $font-basic;
+    color: $color-secondary;
 }
 
 h1,
