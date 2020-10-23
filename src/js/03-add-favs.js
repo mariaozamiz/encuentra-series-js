@@ -1,9 +1,8 @@
 'use strict';
 
-function checkIsFav(event) {
+function checkIsFav(ev) {
     // Identify clicked card by id
-    let clickedElement = document.getElementById(event.currentTarget.id);
-    const id = parseInt(clickedElement.id);
+    const id = parseInt(ev.currentTarget.id);
     // Check if card is already at favs array
     const favShowCard = favs.find((fav) => {
         return fav.show.id === id;
@@ -34,7 +33,9 @@ function paintFavs() {
     if (!favsInfoList) return;
     favs = favsInfoList;
     //paint title
-    addSectionTitle('favs');
+    if (favs.length > 0) {
+        addSectionTitle('favs');
+    }
     //paint delete-all button
     addDeleteAllButton();
     // clean favs list

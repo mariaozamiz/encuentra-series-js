@@ -14,7 +14,9 @@ function paintResults() {
         checkIfNeedsHighlight(newLi);
         newLi.addEventListener('click', checkIsFav);
     }
-    addSectionTitle('results');
+    if (results.length > 0) {
+        addSectionTitle('results');
+    }
 }
 
 function addSectionTitle(section) {
