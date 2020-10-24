@@ -6,10 +6,10 @@ function getClickedItemId(event) {
     const parent = document.getElementById(
         event.currentTarget.parentElement.id
     );
-    deleteFav(parseInt(parent.id));
+    deleteAsFav(parseInt(parent.id));
 }
 
-function deleteFav(id) {
+function deleteAsFav(id) {
     // Find clicked show to delete at favs array
     const showToDelete = favs.findIndex((fav) => {
         return fav.show.id === id;

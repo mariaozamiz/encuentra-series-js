@@ -1,57 +1,56 @@
 'use strict';
 
-function checkIsFav(ev) {
-    // Identify clicked card by id
-    const id = parseInt(ev.currentTarget.id);
-    // Check if card is already at favs array
-    const favShowCard = favs.find((fav) => {
-        return fav.show.id === id;
-    });
-    if (favShowCard) {
-        deleteFav(id);
+function handleCardClick(ev) {
+    const cardId = parseInt(ev.currentTarget.id);
+    const match = findMatch(cardId, favs);
+    if (match) {
+        deleteAsFav(cardId);
     } else {
-        saveAsFav(id);
+        saveAsFav(cardId);
     }
 }
 
-function saveAsFav(id) {
-    // Get info card from results array
-    const favShowCard = results.find((result) => {
-        return result.show.id === parseInt(id);
+function findMatch(cardId, list) {
+    const match = list.find((element) => {
+        return element.show.id === cardId;
     });
-    // Push card's info into favs array
-    favs.push(favShowCard);
-    // save into local storage
+    return match;
+}
+
+function saveAsFav(cardId) {
+    // Find a match in results array
+    const match = findMatch(cardId, results);
+    // Add to favs
+    favs.push(match);
+    // save into local storage & paint both lists
     updateLocalStorage();
     paintFavs();
     paintResults();
 }
 
+function updateLocalStorage() {
+    localStorage.setItem('favShows', JSON.stringify(favs));
+}
+
 function paintFavs() {
     // get favs from local storage
-    const favsInfoList = JSON.parse(localStorage.getItem('favShows'));
-    if (!favsInfoList) return;
-    favs = favsInfoList;
-    //paint title
-    if (favs.length > 0) {
-        addSectionTitle('favs');
-    }
-    //paint delete-all button
-    addDeleteAllButton();
-    // clean favs list
+    const storedFavs = JSON.parse(localStorage.getItem('favShows'));
+    if (!storedFavs) return;
+    favs = storedFavs;
+    // clear
     const favsList = document.querySelector('.js-favs-list');
     favsList.innerHTML = '';
+    //paint title
+    addSectionTitle('favs', favs);
+    //paint delete-all button
+    addDeleteAllButton();
     // Paint card info from local storage
-    for (let i = 0; i < favsInfoList.length; i++) {
-        let newLi = createCard(favsList, favsInfoList[i]);
+    for (let i = 0; i < storedFavs.length; i++) {
+        let newLi = createCard(favsList, storedFavs[i]);
         addDeleteIcon(newLi);
     }
     // Listen to delete buttons
     listenToDeleteAllButton();
-}
-
-function updateLocalStorage() {
-    localStorage.setItem('favShows', JSON.stringify(favs));
 }
 
 // PAINTING______________________________________

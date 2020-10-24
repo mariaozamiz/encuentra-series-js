@@ -1,9 +1,7 @@
 'use strict';
 
 // Paint favs (if there is any)
-if (favs.length > 0) {
-    paintFavs();
-}
+paintFavs();
 
 function paintResults() {
     const resultsList = document.querySelector('.js-results-list');
@@ -12,27 +10,24 @@ function paintResults() {
     // Paint cards
     for (const result of results) {
         let newLi = createCard(resultsList, result);
-        checkIfNeedsHighlight(newLi);
-        newLi.addEventListener('click', checkIsFav);
+        addHighlightIfNeeded(newLi);
+        newLi.addEventListener('click', handleCardClick);
     }
-    // Paint title
-    addSectionTitle('results');
+    addSectionTitle('results', results);
 }
 
-function checkIfNeedsHighlight(newLi) {
+function addHighlightIfNeeded(newLi) {
     // Check
-    const alreadyAFav = favs.find((fav) => {
-        return fav.show.id === parseInt(newLi.id);
-    });
-    // Highlight
-    if (alreadyAFav) {
+    const cardId = parseInt(newLi.id);
+    const match = findMatch(cardId, favs);
+    if (match) {
         newLi.classList.add('yellow-background');
     }
 }
 
-function addSectionTitle(section) {
+function addSectionTitle(section, list) {
     const sectionTitle = document.querySelector(`.${section}-list__title`);
-    if (section.length > 0) {
+    if (list.length > 0) {
         sectionTitle.classList.remove('hidden');
     }
 }
