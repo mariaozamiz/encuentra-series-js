@@ -1,7 +1,5 @@
 'use strict';
 
-// selectors
-
 function handleDeleteIconClick(ev) {
     const cardId = parseInt(ev.currentTarget.parentElement.id);
     deleteAsFav(cardId);
