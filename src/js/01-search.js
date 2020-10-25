@@ -17,7 +17,7 @@ function inputHandler(event) {
 
 // API search
 function GetDataFromApi(inputValue) {
-    fetch(`http://api.tvmaze.com/search/shows?q=${inputValue}`)
+    fetch(`https://api.tvmaze.com/search/shows?q=${inputValue}`)
         .then(function (response) {
             return response.json();
         })
