@@ -1,13 +1,10 @@
 'use strict';
 
-// Paint favs (if there is any)
-paintFavs();
-
 function paintResults() {
     const resultsList = document.querySelector('.js-results-list');
     // Clear
     resultsList.innerHTML = '';
-    // Paint cards
+    //Paint cards
     for (const result of results) {
         let newLi = createCard(resultsList, result);
         addHighlightIfNeeded(newLi);
@@ -29,5 +26,7 @@ function addSectionTitle(section, list) {
     const sectionTitle = document.querySelector(`.${section}-list__title`);
     if (list.length > 0) {
         sectionTitle.classList.remove('hidden');
+    } else {
+        sectionTitle.classList.add('hidden');
     }
 }
