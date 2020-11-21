@@ -16,7 +16,7 @@ function addImage(newLi, element) {
         newImage.src =
             'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
     } else {
-        newImage.src = element.show.image.medium;
+        newImage.src = element.show.image.medium.replace('http:', 'https:');
     }
 }
 
