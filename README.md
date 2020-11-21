@@ -15,7 +15,7 @@ Esta aplicación web realiza búsquedas de series de TV por título, permite cre
 ## Tecnologías utilizadas
 
 - Vanilla JavaScript, DOM avanzado, HTML y CSS (Sass)
-- Gulp, [Adalab Web Starter Kit](https://github.com/Adalab/adalab-web-starter-kit))
+- Gulp, [Adalab Web Starter Kit](https://github.com/Adalab/adalab-web-starter-kit)
 
 
 ## Características
