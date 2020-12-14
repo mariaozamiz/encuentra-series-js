@@ -28,5 +28,5 @@ function saveAsFav(cardId) {
 }
 
 function updateLocalStorage() {
-    localStorage.setItem('favShows', JSON.stringify(favs));
+    localStorage.setItem('storedFavs', JSON.stringify(favs));
 }

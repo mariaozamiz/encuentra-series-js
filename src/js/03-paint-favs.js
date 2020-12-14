@@ -6,13 +6,9 @@ function paintFavs() {
     const favsList = document.querySelector('.js-favs-list');
     // clear
     favsList.innerHTML = '';
-    // fetch localStorage
-    const storedFavs = JSON.parse(localStorage.getItem('favShows'));
-    if (!storedFavs) return;
-    favs = storedFavs;
     //paint cards
-    for (let i = 0; i < storedFavs.length; i++) {
-        let newLi = createCard(favsList, storedFavs[i]);
+    for (let i = 0; i < favs.length; i++) {
+        let newLi = createCard(favsList, favs[i]);
         addDeleteIcon(newLi);
     }
     //add section elements

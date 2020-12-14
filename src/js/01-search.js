@@ -1,7 +1,7 @@
 'use strict';
 
 let results = [];
-let favs = [];
+let favs = JSON.parse(localStorage.getItem('storedFavs')) || [];
 
 // search button
 const searchButton = document.querySelector('.js-search-form__button');
