@@ -62,3 +62,8 @@ function createCard(list, element) {
 - Haciendo click sobre una serie destacada en amarillo entre los resultados de búsqueda. 
 - Pulsando el botón "borrar todas" del listado de favoritas.
 - Pulsando el icono de borrado individual en cada serie favorita.
+
+
+## Demo
+
+![Demo](https://github.com/mariaozamiz/encuentra-series-js/blob/master/src/images/encuentra_series_demo.gif)
